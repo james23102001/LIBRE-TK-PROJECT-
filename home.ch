@@ -17,4 +17,7 @@ Text1.id: 0
 #On ajoute un évènement au clic de la souris
 [events]
 Button-1: app/screens/main.ch
+Control-t: app/scripts/connect.gcs
 [/events]
+
+debug: yes

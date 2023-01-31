@@ -1,0 +1,10 @@
+#connect.gcs
+#Test de connexion à la base de données bd_caisse
+connect MySQL with ( "root", "", "localhost", "bd_caisse" )
+query select_all with q
+print var LASTLIST
+close
+
+[q]
+show tables;
+[/q]

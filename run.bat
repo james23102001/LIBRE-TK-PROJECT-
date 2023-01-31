@@ -1,2 +1,2 @@
-"C:\GC\cores\GC_tk" home.ch
+"C:\GC\cores\GC_consoleTk" home.ch
 @pause
