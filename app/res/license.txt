@@ -1,13 +1,19 @@
-********************************************
-**** License et conditions d'utilisation
-********************************************
+****************************************************************************************
+********************** License et conditions d'utilisation **************************
+****************************************************************************************
 
 Ce programme contient un code source provenant du dépôt GITHUB Suivant:
 	https://github.com/james23102001/LIBRE-TK-PROJECT-.git
-	License: GPL 2 ou plus (2 listed below)
+	License: GPL 2 ou plus (2 listé ci-dessous.)
 	Copyright 2011-2014 Game Center Burkina
 
-=== License :
+********************* Important ********************* 
+Ce programme est librement distribué par l'équipe de GC afin de soutenir les travailleurs 
+au Burkina et ailleurs. En utilisant ce logiciel, vous acceptez qu'en aucun cas l'équipe ne sera 
+responsable d'un incident quelconque de perte ou d'indisponibilité de vos données.
+********************* 
+
+*** License :
 zlib license
 	This software is provided 'as-is', without any express or implied
 	warranty. In no event will the authors be held liable for any damages
