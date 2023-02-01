@@ -1,9 +1,11 @@
 #connect.gcs
 #Test de connexion à la base de données bd_caisse
-connect MySQL with ( "root", "", "localhost", "bd_caisse" )
+connect MySQL with $MYSQLDATA
 query select_all with q
 print var LASTLIST
 close
+
+constants: app/defines.ch
 
 [q]
 show tables;

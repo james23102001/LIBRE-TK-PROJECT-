@@ -1,0 +1,21 @@
+#licence_showlicense.gcs
+#On vérifie si le fichier accepted.txt existe. Si oui, on affiche main.ch
+check file accepted.txt
+if $EXISTS then
+	load app/screens/main.ch
+	end
+#Si non, alors on charge le texte contenu dans app/res/license.txt dans notre edit, On affiche la checkbox; on désactive le bouton, et on crée un booléen qui nous servira à savoir si la checkbox est cochée ou non
+LoadFile app/res/license.txt
+LoadPic app/res/checkbox.png at 70-360
+ConfigButton 1 state="disabled"
+SetVar *licence_checked 0
+end
+
+constants: app/defines.ch
+[
+licence_showlicense : Affiche l'écran de license la première fois et main après.
+
+vars:
+	*licence_checked: ref. licence_accept.gcs
+]
+

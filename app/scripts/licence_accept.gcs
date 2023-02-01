@@ -1,0 +1,29 @@
+#licence_accept.gcs
+#Vérifier si l'élément graphique numéro 5 a été cliqué ( ici, notre checkbox )
+compare LASTCLICKEDID 5
+#Si oui, alors on vérifie encore si le booléen *licence_checked est faux
+if $EQUAL then
+	compare *licence_checked 0
+	# Si oui alors on change l'image du checkbox grâce à la fonction self.page.img_upd(image, id); puis on active le bouton 1, et on change le booléen.
+	if $EQUAL then
+		evaluate self.page.img_upd("app/res/checkbox-checked.png", 5)
+		ConfigButton 1 state = "normal"
+		SetVar *licence_checked 1
+		end
+	#Si non, On remet l'image de base en changeant le booléen et en désactivant le bouton
+	evaluate self.page.img_upd("app/res/checkbox.png", 5)
+	ConfigButton 1 state = "disabled"
+	SetVar *licence_checked 0
+	end
+end
+
+constants: app/defines.ch
+[
+licence_showlicence.gcs
+
+vars:
+	*licence_checked: booléen contenant 1 si la checkbox est cochée et 0 sinon.
+
+evals:
+	self.page.img_upd(image, id): Fonction python permettant de changer une image sans modifier son id.
+]

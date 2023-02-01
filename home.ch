@@ -5,6 +5,8 @@ Title: GCS LIBRE PROJECT - BY GC TEAM
 Width: 600
 Size: 518
 
+main_text_color: red
+
 #L'image de fond
 BackGround: app/res/bg.png
 
@@ -16,8 +18,8 @@ Text1.id: 0
 
 #On ajoute un évènement au clic de la souris
 [events]
-Button-1: app/screens/main.ch
+Button-1: app/screens/licence.ch
 Control-t: app/scripts/connect.gcs
 [/events]
 
-debug: yes
+debug: no

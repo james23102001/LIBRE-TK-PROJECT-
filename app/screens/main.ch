@@ -7,4 +7,4 @@ Size: 518
 BackGround: app/res/bg-grayed.png
 
 #Je veux qu'au démarrage, le script showToolBar.gcs s'exécute
-OnDisplay: app/scripts/showToolBar.gcs
+OnDisplay: app/scripts/main_showToolBar.gcs
