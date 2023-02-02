@@ -1,0 +1,4 @@
+#transition_1.gcs
+#from home to licence.gcs
+create window app/screens/licence.ch destroy current
+end

@@ -4,8 +4,9 @@ use tk
 Title: GCS LIBRE PROJECT - BY GC TEAM
 Width: 600
 Size: 518
+OnDisplay: @toTop
 
-main_text_color: red
+main_text_color: black
 
 #L'image de fond
 BackGround: app/res/bg.png
@@ -18,8 +19,13 @@ Text1.id: 0
 
 #On ajoute un évènement au clic de la souris
 [events]
-Button-1: app/screens/licence.ch
+Button-1: app/scripts/transition_1.gcs
 Control-t: app/scripts/connect.gcs
 [/events]
+
+[@toTop]
+evaluate self.geometry('+0+0')
+end
+[/@toTop]
 
 debug: no

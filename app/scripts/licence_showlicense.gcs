@@ -1,5 +1,6 @@
 #licence_showlicense.gcs
 #On vérifie si le fichier accepted.txt existe. Si oui, on affiche main.ch
+evaluate self.geometry('+0+0')
 check file accepted.txt
 if $EXISTS then
 	load app/screens/main.ch

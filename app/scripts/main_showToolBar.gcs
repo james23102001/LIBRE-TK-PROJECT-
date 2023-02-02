@@ -1,6 +1,7 @@
 #ShowToolBar.gcs
 #A pour rôle d'afficher la ToolBar
 # D'abord les grands titres, ...
+evaluate self.geometry('+0+0')
 SetVar *Titres evaluate( ["Solde", "Depense", "Etats", "Administration"])
 #Puis les sous titres
 SetVar *sousTitres evaluate ( [["Modifier"], ["Effectuer une depense"], ["Etat semestriel", "Etat entre deux dates"], ["Gestion des comptes", "Gestion des droits"]])

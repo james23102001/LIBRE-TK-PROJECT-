@@ -5,7 +5,7 @@ Title: GCS LIBRE PROJECT - BY GC TEAM
 Width: 600
 Size: 518
 
-main_text_color: red
+main_text_color: white
 
 #L'image de fond
 BackGround: app/res/bg.png
