@@ -1,0 +1,47 @@
+#checkUser.gcs
+connect MySQL with $MYSQLDATA
+GetInput 0
+SetVar *login LASTRESULT
+GetInput 1
+#On va hasher le mot de passe avant de le rechercher dans la base de données.
+evaluate {*PYFUNCS}["md5"]({LASTRESULT})
+SetVar *password LASTRESULT
+#On fait une requête
+query select_all with query
+#On compte le nombre d'utilisateurs correspondant. Si il n'yen a aucun, c'est que les identifiants sont incorrects!
+count LASTLIST
+compare LASTRESULT 0
+if $EQUAL then
+	MessageBox sorry Utilisateur inexistant!
+	end
+#On sauvegarde l'id de l'utilisateur et son role
+GetTableElement 0 of LASTLIST
+GetTableElement 0 of LASTRESULT
+SetVar *userId LASTRESULT
+GetTableElement 0 of LASTLIST
+GetTableElement 5 of LASTRESULT
+SetVar *userRole LASTRESULT
+
+#On sauvegarde aussi toute la ligne de l'entreprise dans *company comme liste pour pouvoir changer des éléments plus tard.
+query select_one with query2
+SetVar *company LASTTUPLE
+turn *company into list
+
+#On enregistre la trace
+evaluate self.connect.request('insert into historique(libelle,iduser) values ( "Connexion", '+str({*userId})+' ); ')
+
+#Puis on change d'écran.
+load app/screens/main.ch
+
+close database
+end
+
+constants: app/defines.ch
+
+[query]
+select * from utilisateur where login = *login and mot_de_passe = *password ;
+[/query]
+
+[query2]
+select * from entreprise;
+[/query2]

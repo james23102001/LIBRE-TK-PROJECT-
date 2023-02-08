@@ -1,6 +1,6 @@
 #license_next.gcs
 #Le bouton suivant, juste afficher l'écran principal
-load app/screens/main.ch
+create window app/screens/login.ch destroy current
 #Ecrire le texte "Terms and Conditions have been accepted dans le fichier accepted.txt
 write Terms and Conditions have been accepted. =>accepted.txt
 end

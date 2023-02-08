@@ -1,0 +1,5 @@
+#Afficher la fenêtre tout en haut à gauche.
+evaluate self.geometry('+0+0')
+#Juste pour afficher une image à x=200 et y=200
+LoadPic app/res/login.png at 200-100
+end

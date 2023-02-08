@@ -1,0 +1,15 @@
+#checkAndNext
+compare SELECTED None
+if 0 then
+	MessageBox Erreur Il faut choisir un utilisateur!
+	end
+GetTableElement 0 of SELECTED
+SetVar *assoc_userid LASTRESULT
+#Créer l'écran app/screens/form_rights_2.ch tout en détruisant l'écran actuel
+create window app/screens/form_rights_2.ch destroy current
+end
+
+[
+vars:
+	*assoc_userid : id de l'utilisateur sélectionné
+]

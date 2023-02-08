@@ -1,0 +1,31 @@
+#checkAndUpdate
+#Mêmes vérifications et traitements que *cost dans form_depense_checkAndInsert
+GetInput 0
+SetVar *toAdd LASTRESULT
+if evaluate ( not {*toAdd}.replace('.', '').isdigit() and not {*toAdd}.replace(',', '').isdigit() ) then
+	MessageBox Hey! S'il vous plait, veuillez saisir une valeur correcte!
+	end
+evaluate float({*toAdd}.replace(',','.'))=>*toAdd
+add *toAdd *company_solde
+SetVar *company_solde LASTRESULT
+evaluate {*company}.__setitem__(5, {LASTRESULT})
+add *company_solde $DEVISE
+CreateText 3 LASTRESULT
+connect MySQL with $MYSQLDATA
+evaluate self.connect.request('update entreprise set solde = '+str({*company_solde}))
+evaluate self.connect.request('insert into historique(libelle,iduser) values ( "Ajout de '+str({*toAdd})+' $DEVISE au solde", '+str({*userId})+' ); ')
+close database
+MessageBox Ok! Solde mis a jour!
+end
+
+constants: app/defines.ch
+
+[upd]
+update entreprise set solde = *company_solde ;
+[/upd]
+
+[
+vars :
+	*toAdd : Contenu du seul champ de saisie.
+	( autres ) : voir form_depense_checkAndInsert
+]

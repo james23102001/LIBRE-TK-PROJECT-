@@ -1,0 +1,30 @@
+: LIBRE PROJECT MODEL FILE
+
+: Les choses à faire
+: TODO
+	- Optimiser
+	- Déployer
+	- Documenter
+	- Mettre Solde
+	- Enregistrer dépenses
+	- Faire le bilan semestriel
+	- Faire le bilan entre deux dates
+	- Gérer les comptes du personnel
+	- Gérer les droits d'accès
+	- Limiter le mot de passe à 54 caractères MAX ( à cause du hachage volumineux )
+	- Ajouter des évènements datés ( comme souhaiter joyeux noel le 25 décembre )
+
+: ROLES
+	- Dessinateur d'interfaces
+	- Gestionnaire de bases de données
+	- Concepteur d'écran
+	- Concepteur de scripts
+	- Documenteur
+	- Testeur
+	- Promoteur
+
+: STRUCTURE
+	- On mettra nos ressources dans app res
+	- Les écrans dans app screen
+	- Les scripts dans app scripts
+	- Chaque script doit être commenté, et avoir la liste de ses variables expliquées à la fin

@@ -1,0 +1,13 @@
+#showCurrent
+#Si on n'arrive pas à récupérer le solde actuel dans la variable *company c'est que l'utilisateur a atteint cet écran sans se connecter.
+GetTableElement 5 of *company
+if error then
+	MessageBox Erreur Acces illegal a la base de donnees!
+	exit
+	end
+SetVar *company_solde LASTRESULT
+add *company_solde $DEVISE
+CreateText 3 LASTRESULT
+end
+
+constants: app/defines.ch

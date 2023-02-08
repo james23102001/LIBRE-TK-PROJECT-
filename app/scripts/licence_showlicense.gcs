@@ -3,7 +3,7 @@
 evaluate self.geometry('+0+0')
 check file accepted.txt
 if $EXISTS then
-	load app/screens/main.ch
+	create window app/screens/login.ch destroy current
 	end
 #Si non, alors on charge le texte contenu dans app/res/license.txt dans notre edit, On affiche la checkbox; on désactive le bouton, et on crée un booléen qui nous servira à savoir si la checkbox est cochée ou non
 LoadFile app/res/license.txt

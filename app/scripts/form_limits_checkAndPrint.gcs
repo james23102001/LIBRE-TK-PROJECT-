@@ -1,0 +1,52 @@
+#form_limits_checkAndPrint.gcs
+GetInput 0
+SetVar *date1 LASTRESULT
+GetInput 1
+SetVar *date2 LASTRESULT
+
+#Chaque date doit forcément contenir des chiffres, et deux fois le caractère '/'. Sinon, c'est une erreur.
+if evaluate( ({*date1}.count('/')!=2 or not {*date1}.replace('/','').isdigit()) or ({*date2}.count('/')!=2 or not {*date2}.replace('/','').isdigit()) ) then
+	MessageBox Erreur Veuillez respecter le format jj/mm/aa
+	end
+
+#Si c'est bon, on découpe la date en jour, mois et année dans un tableau qu'on appellera *temp
+evaluate {*date1}.split('/')
+SetVar *temp LASTRESULT
+
+#Puis on sauvegarde temporairement ces valeurs
+GetTableElement 0 of *temp
+SetVar *day LASTRESULT
+GetTableElement 1 of *temp
+SetVar *month LASTRESULT
+GetTableElement 2 of *temp
+SetVar *year LASTRESULT
+
+#Pour réecrire la date sous le bon format.
+evaluate {*year}+"-"+{*month}+"-"+{*day}
+SetVar *date1 LASTRESULT
+
+#Pareil
+evaluate {*date2}.split('/')
+SetVar *temp LASTRESULT
+GetTableElement 0 of *temp
+SetVar *day LASTRESULT
+GetTableElement 1 of *temp
+SetVar *month LASTRESULT
+GetTableElement 2 of *temp
+SetVar *year LASTRESULT
+evaluate {*year}+"-"+{*month}+"-"+{*day}
+SetVar *date2 LASTRESULT
+
+#Maintenant, on exécute le script form_limits_print 1 fois.
+execute app/scripts/form_limits_print.gcs 1
+end
+
+[
+vars:
+	*date1 : Au début ça contient la date de départ au format jj/mm/aa et à la fin au format aa-mm-jj
+	*date2 : Au début ça contient la date de fin au format jj/mm/aa et à la fin au format aa-mm-jj
+	*temp : Tableau temporaire contenant séparément le jour, le mois et l'année par date.
+	*day : Premier élément du tableau *temp
+	*month : Second élément du tableau *temp
+	*year : Dernier élément du tableau *temp
+]

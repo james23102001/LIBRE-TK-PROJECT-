@@ -1,0 +1,6 @@
+compare *userRole 2
+if 5 then
+	MessageBox Stop Vous n'avez pas les droits pour cette manipulation.
+	end
+create window app/screens/form_update.ch
+end

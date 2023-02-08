@@ -1,0 +1,49 @@
+#Impression de l'historique
+#Même démarche que forms_limit_print.
+#Seul l'admin le fait.
+compare *userRole 3
+if 5 then
+	MessageBox Stop Vous n'avez pas les droits pour cette manipulation.
+	end
+ReadFile app/res/etat2.dat
+SetVar *html LASTRESULT
+evaluate {*html}.replace('%ENTREPRISE%', {*company}[1])=>*html
+evaluate {*html}.replace('%VILLE%', {*company}[4])=>*html
+evaluate {*html}.replace('%NO%', {*company}[6])=>*html
+evaluate {*html}.replace('%MAIL%', {*company}[3])=>*html
+SetVar *part1 evaluate ( "" )
+connect MySQL with $MYSQLDATA
+query select_all with getD
+SetVar *db_deps LASTLIST
+count *db_deps
+compare LASTRESULT 0
+if 0 then
+	MessageBox Erreur! Pas de trace enregistree!
+	close database
+	end
+SetVar *loop LASTRESULT
+SetVar *i 0
+repeat *loop times
+GetTableElement *i of *db_deps
+SetVar *dep LASTRESULT
+evaluate '<tr><td style="vertical-align:top;padding-bottom:0cm; padding-left:0cm; padding-right:0cm; padding-top:0cm; background-color:; border-left:none, 0, inherit; border-right:none, 0, inherit; border-top:none, 0, inherit; border-bottom:none, 0, inherit; "><div><p class="style_style1 style_style1 style_style4 style_style4 style_style10 style_style10 " style="text-align:left; ">'+{*dep}[1]+'</p></div></td>\n<td style="vertical-align:top;padding-bottom:0cm; padding-left:0cm; padding-right:0cm; padding-top:0cm; background-color:; border-left:none, 0, inherit; border-right:none, 0, inherit; border-top:none, 0, inherit; border-bottom:none, 0, inherit; "><div><p class="style_style1 style_style1 style_style4 style_style4 style_style10 style_style10 " style="text-align:left; ">'+str({*dep}[0])+'</p></div></td>\n<td style="vertical-align:top;padding-bottom:0cm; padding-left:0cm; padding-right:0cm; padding-top:0cm; background-color:; border-left:none, 0, inherit; border-right:none, 0, inherit; border-top:none, 0, inherit; border-bottom:none, 0, inherit; "><div><p class="style_style1 style_style1 style_style4 style_style4 style_style10 style_style10 " style="text-align:left; ">'+{*dep}[3]+'</div></td>\n</tr>'
+evaluate {*part1}+{LASTRESULT}=>*part1
+evaluate int({*i})+1=>*i
+nope
+stop repeat
+evaluate {*html}.replace('%ROWS%', {*part1})=>*html
+write *html=>last.html
+evaluate system('last.html')
+evaluate self.connect.request('insert into historique(libelle,iduser) values ( "Impression de l\'historique", '+str({*userId})+' ); ')
+end
+
+constants: app/defines.ch
+
+[getD]
+select historique.date_action, historique.libelle, historique.iduser, utilisateur.login from historique, utilisateur where historique.iduser = utilisateur.id;
+[/getD]
+
+[
+	*vars :
+		*userRole : Role de l'utilisateur connecté.
+]

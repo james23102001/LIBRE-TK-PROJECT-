@@ -5,7 +5,7 @@ Title: GCS LIBRE PROJECT - BY GC TEAM
 Width: 600
 Size: 518
 OnDisplay: @toTop
-
+AppIcon: icon.png
 main_text_color: black
 
 #L'image de fond
@@ -25,6 +25,7 @@ Control-t: app/scripts/connect.gcs
 
 [@toTop]
 evaluate self.geometry('+0+0')
+SetVar *PYFUNCS evaluate( self.funcs )
 end
 [/@toTop]
 

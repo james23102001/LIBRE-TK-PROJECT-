@@ -1,0 +1,49 @@
+#checkAndInsert.gcs
+compare SELECTED None
+if 0 then
+	MessageBox Erreur Choisissez un role S'il vous plait!
+	end
+GetInput 0
+SetVar *nom LASTRESULT
+GetInput 1
+SetVar *prenom LASTRESULT
+GetInput 6
+SetVar *login LASTRESULT
+GetInput 9
+SetVar *password LASTRESULT
+count *login
+compare LASTRESULT 0
+if 0 then
+	MessageBox Erreur Le login est un champ Obligatoire!
+	end
+count *password
+compare LASTRESULT 0
+if 0 then
+	MessageBox Erreur Le Mot de passe est un champ Obligatoire!
+	end
+#Les fonctions python, on les avait enregistrées dans une variable *PYFUNCS. Maintenant, exécutons la fonction md5 ( Pas réellement md5, mais une fonction de hashage personnalisée )
+#Sert à transformer le mot de passe en texte illisible.
+evaluate {*PYFUNCS}["md5"]({*password})
+SetVar *password LASTRESULT
+#On récupère aussi le rôle.
+GetTableElement 0 of SELECTED
+SetVar *rid LASTRESULT
+#Puis on insère, en laissant une trace.
+connect MySQL with $MYSQLDATA
+evaluate self.connect.request('insert into utilisateur( nom, prenom, login, mot_de_passe, idrole ) values ( "'+{*nom}+'", "'+str({*prenom})+'", "'+{*login}+'", "'+str({*password})+'", '+str({*rid})+'); ')
+evaluate self.connect.request('insert into historique(libelle,iduser) values ( "Inscription de '+{*nom}+' '+{*prenom}+'", '+str({*userId})+' ); ')
+close database
+MessageBox Ok! Utilisateur Ajoute!
+end
+
+constants: app/defines.ch
+
+[
+	vars:
+		*nom : Le nom saisi
+		*prenom : Le prénom saisi
+		*login : Le login saisi
+		*password : Le password saisi
+		*PYFUNCS : Liste de fonctions python de userModule
+		*rid : id du rôle sélectionné.
+]

@@ -1,0 +1,15 @@
+#showRoles
+connect MySQL with $MYSQLDATA
+query select_all with q
+create ListBox with LASTLIST
+close database
+SetVar SELECTED None
+end
+
+[q]
+select * from role where id != 3;
+[/q]
+
+constants: app/defines.ch
+LB.x: 200
+LB.y: 135

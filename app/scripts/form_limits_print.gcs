@@ -1,0 +1,82 @@
+#form_limits_print
+#Lire le texte html dans etat1.dat et l'affecter à la variable *html
+ReadFile app/res/etat1.dat
+SetVar *html LASTRESULT
+
+#Remplacer ce qu'on connaît déjà.
+evaluate {*html}.replace('%ENTREPRISE%', {*company}[1])=>*html
+evaluate {*html}.replace('%VILLE%', {*company}[4])=>*html
+evaluate {*html}.replace('%NO%', {*company}[6])=>*html
+evaluate {*html}.replace('%MAIL%', {*company}[3])=>*html
+evaluate {*html}.replace('%DATE1%', {*date1})=>*html
+evaluate {*html}.replace('%DATE2%', {*date2})=>*html
+
+#Maintenant on va parcourir les tables pour avoir les lignes de l'état.
+SetVar *part1 evaluate ( "" )
+connect MySQL with $MYSQLDATA
+#On exécute la requête ( plus bas ) et on enregistre le resultat dans *dn_deps
+query select_all with getD
+SetVar *db_deps LASTLIST
+#On vérifie si *db_deps est vide. Si oui, on arrête.
+count *db_deps
+compare LASTRESULT 0
+if $EQUAL then
+	MessageBox Erreur! Pas de vente enregistree!
+	close database
+	end
+#On enregistre le nombre de lignes à parcourir dans *loop.
+SetVar *loop LASTRESULT
+#Notre variable d'incrépentation, *i
+SetVar *i 0
+
+#Note importante : repeat est une boucle depuis Tk 1.1, ForEach, la nouvelle boucle, devrait être utilisée. Mais un bug a été détecté ( dès qu'elle finit toutes les boucles, elle arrête le script ), ce qui nous pousse à utiliser repeat.
+#Répéter *loop fois :
+repeat *loop times
+#On récupère la ligne de la table numéro *i dans la variable *dep
+GetTableElement *i of *db_deps
+SetVar *dep LASTRESULT
+
+#On écrit le texte html pour afficher cette ligne dans notre état.
+evaluate '<tr><td style="vertical-align:top;padding-bottom:0cm; padding-left:0cm; padding-right:0cm; padding-top:0cm; background-color:; border-left:none, 0, inherit; border-right:none, 0, inherit; border-top:none, 0, inherit; border-bottom:none, 0, inherit; "><div><p class="style_style1 style_style1 style_style4 style_style4 style_style10 style_style10 " style="text-align:left; ">'+str({*dep}[2])+'</p></div></td>\n<td style="vertical-align:top;padding-bottom:0cm; padding-left:0cm; padding-right:0cm; padding-top:0cm; background-color:; border-left:none, 0, inherit; border-right:none, 0, inherit; border-top:none, 0, inherit; border-bottom:none, 0, inherit; "><div><p class="style_style1 style_style1 style_style4 style_style4 style_style10 style_style10 " style="text-align:left; ">'+{*dep}[1]+'</p></div></td>\n<td style="vertical-align:top;padding-bottom:0cm; padding-left:0cm; padding-right:0cm; padding-top:0cm; background-color:; border-left:none, 0, inherit; border-right:none, 0, inherit; border-top:none, 0, inherit; border-bottom:none, 0, inherit; "><div><p class="style_style1 style_style1 style_style4 style_style4 style_style10 style_style10 " style="text-align:left; ">'+str({*dep}[4])+'</div></td>\n<td style="vertical-align:top;padding-bottom:0cm; padding-left:0cm; padding-right:0cm; padding-top:0cm; background-color:; border-left:none, 0, inherit; border-right:none, 0, inherit; border-top:none, 0, inherit; border-bottom:none, 0, inherit; "><div><p class="style_style1 style_style1 style_style4 style_style4 style_style10 style_style10 " style="text-align:left; ">'+str({*dep}[3])+'</p></div></td>\n<td style="vertical-align:top;padding-bottom:0cm; padding-left:0cm; padding-right:0cm; padding-top:0cm; background-color:; border-left:none, 0, inherit; border-right:none, 0, inherit; border-top:none, 0, inherit; border-bottom:none, 0, inherit; "><div><p class="style_style1 style_style1 style_style4 style_style4 style_style10 style_style10 " style="text-align:left; ">'+{*dep}[6]+'</p></div></td>\n</tr>'
+
+#Et on concatène tout ça à la chaine de caractères *part1
+evaluate {*part1}+{LASTRESULT}=>*part1
+
+#*i++
+evaluate int({*i})+1=>*i
+
+#nope ne sert à rien :)
+nope
+
+#Fin de la boucle, tout recommence depuis repeat jusqu'à *loop fois
+stop repeat
+
+#On a les lignes maintenant, on les met dans notre variable *html
+evaluate {*html}.replace('%DEPENSES%', {*part1})=>*html
+
+#On écrit le tout dans un fichier : last.html
+write *html=>last.html
+#On ouvre le fichier pour l'utilisateur. Qu'il l'imprime lui même! ( clic droit imprimer, ou control-p )
+evaluate system('last.html')
+#On enregistre des traces dans l'historique
+evaluate self.connect.request('insert into historique(libelle,iduser) values ( "Impression d\'etat des depenses", '+str({*userId})+' ); ')
+end
+
+constants: app/defines.ch
+
+[getD]
+select depenses.id, depenses.libelle, depenses.date_depense, depenses.montant, depenses.quantite, depenses.iduser, utilisateur.login from depenses, utilisateur where depenses.iduser = utilisateur.id and depenses.date_depense > *date1 and depenses.date_depense < *date2 ;
+[/getD]
+
+[
+vars:
+	*html : texte html qu'on affiche à la fin.
+	*company : ( ref. form_depense_checkAndInsert )
+	*part1 : Juste les lignes du tableau dans *html
+	*date1 : La date de début
+	*date2 : La date de fin.
+	*db_deps : Les lignes retournées par la requête getD
+	*loop : La taille de db_deps
+	*dep : L'élément numéro *i de db_deps
+	*i : Variable d'incrémentation.
+]

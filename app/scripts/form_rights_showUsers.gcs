@@ -1,0 +1,15 @@
+#ShowUsers.gcs
+connect MySQL with $MYSQLDATA
+query select_all with q2
+create ListBox with LASTLIST
+close database
+SetVar SELECTED None
+end
+
+[q2]
+select * from utilisateur where id != 2;
+[/q2]
+
+constants: app/defines.ch
+LB.x: 200
+LB.y: 135

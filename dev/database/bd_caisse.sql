@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : mar. 31 jan. 2023 à 09:00
+-- Généré le : mer. 08 fév. 2023 à 08:56
 -- Version du serveur : 5.7.36
 -- Version de PHP : 7.1.33
 
@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS `depenses` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `libelle` varchar(60) DEFAULT NULL,
   `date_depense` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `montant` int(11) DEFAULT '0',
+  `montant` decimal(11,0) DEFAULT '0',
   `quantite` int(11) DEFAULT '0',
   `iduser` int(11) NOT NULL,
   PRIMARY KEY (`id`),
@@ -52,8 +52,17 @@ CREATE TABLE IF NOT EXISTS `entreprise` (
   `description` varchar(100) DEFAULT NULL,
   `mail` varchar(100) DEFAULT NULL,
   `adresse` varchar(100) DEFAULT NULL,
+  `solde` decimal(11,0) NOT NULL DEFAULT '0',
+  `telephone` varchar(30) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+
+--
+-- Déchargement des données de la table `entreprise`
+--
+
+INSERT INTO `entreprise` (`id`, `nom`, `description`, `mail`, `adresse`, `solde`, `telephone`) VALUES
+(1, 'GC', 'GEST CENTER BURKINA', 'gcenterburkina@gmail.com', 'Ouagadougou, BURKINA FASO', '5500', '00226 74 91 21 62');
 
 -- --------------------------------------------------------
 
@@ -105,11 +114,19 @@ CREATE TABLE IF NOT EXISTS `utilisateur` (
   `nom` varchar(100) DEFAULT NULL,
   `prenom` varchar(100) DEFAULT NULL,
   `login` varchar(100) DEFAULT NULL,
-  `mot_de_passe` varchar(100) DEFAULT NULL,
+  `mot_de_passe` varchar(1000) DEFAULT NULL,
   `idrole` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `idrole` (`idrole`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+
+--
+-- Déchargement des données de la table `utilisateur`
+--
+
+INSERT INTO `utilisateur` (`id`, `nom`, `prenom`, `login`, `mot_de_passe`, `idrole`) VALUES
+(1, 'user', 'user', 'user', '77.99986369922624Z78.99986369922624A79.99986369922624180.999863699226242', 2),
+(2, 'admin', 'admin', 'admin', '22.999863699226236e25.999863699226236q32.99986369922623k15.999863699226236p38.99986369922623;', 3);
 
 --
 -- Contraintes pour les tables déchargées
@@ -125,15 +142,13 @@ ALTER TABLE `depenses`
 -- Contraintes pour la table `historique`
 --
 ALTER TABLE `historique`
-  ADD CONSTRAINT `historique_ibfk_1` FOREIGN KEY (`iduser`) REFERENCES `utilisateur` (`id`),
-  ADD CONSTRAINT `historique_ibfk_2` FOREIGN KEY (`iduser`) REFERENCES `utilisateur` (`id`);
+  ADD CONSTRAINT `historique_ibfk_1` FOREIGN KEY (`iduser`) REFERENCES `utilisateur` (`id`);
 
 --
 -- Contraintes pour la table `utilisateur`
 --
 ALTER TABLE `utilisateur`
-  ADD CONSTRAINT `utilisateur_ibfk_1` FOREIGN KEY (`idrole`) REFERENCES `role` (`id`),
-  ADD CONSTRAINT `utilisateur_ibfk_2` FOREIGN KEY (`idrole`) REFERENCES `role` (`id`);
+  ADD CONSTRAINT `utilisateur_ibfk_1` FOREIGN KEY (`idrole`) REFERENCES `role` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -27,4 +27,7 @@ $STRING 1
 #Données de connection
 $MYSQLDATA ( "root", "", "localhost", "bd_caisse" )
 
+#La monnaie, dépend du pays
+$DEVISE FCFA
+
 #END

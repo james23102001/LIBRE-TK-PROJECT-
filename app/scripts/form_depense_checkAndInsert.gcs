@@ -1,0 +1,71 @@
+#form_depense_checkAndInsert
+
+#Récupérer le champ à l'id 0 dans *libelle
+GetInput 0
+SetVar *libelle LASTRESULT
+
+#Puis le champ à l'id 1 dans *cost
+GetInput 1
+SetVar *cost LASTRESULT
+
+#Si le coût n'est pas en décimal, avec un (.) ou une (,) alors erreur et arrêter.
+if evaluate ( not {*cost}.replace('.', '').isdigit() and not {*cost}.replace(',', '').isdigit() ) then
+	MessageBox Hey! S'il vous plait, veuillez saisir une valeur correcte pour le montant!
+	end
+	
+#Le champ 6 dans *qtte
+GetInput 6
+SetVar *qtte LASTRESULT
+
+#Si la quantite n'est pas un entier, erreur.
+if evaluate ( not {*qtte}.isdigit() ) then
+	MessageBox Hey! S'il vous plait, veuillez saisir une valeur correcte pour la quantite!
+	end
+
+#En une seule ligne, on convertit les décimaux français en décimaux anglais, on le multiplie par la quantite, et on affecte le résultat à *cost.
+evaluate float({*cost}.replace(',','.'))*int({*qtte})=>*cost
+
+#On enlève le coût dans le solde actuel.
+substract *company_solde *cost
+#Si il reste moins de 0Fcfa, c'est qu'il n'ya pas assez d'argent!
+compare LASTRESULT 0
+if $LESS then
+	MessageBox Erreur Pas assez d'argent pour effectuer cette dépense!
+	end
+#Sinon, on modifie le solde ( il devient le reste )
+SetVar *company_solde LASTRESULT
+
+#On modifie le dictionnaire company en écrasant la valeur du solde.
+evaluate {*company}.__setitem__(5, {LASTRESULT})
+
+#On concatène avec la devise et on affiche.
+add *company_solde $DEVISE
+CreateText 3 LASTRESULT
+
+#Maintenant on se connecte à la base de données.
+connect MySQL with $MYSQLDATA
+
+#Note importante : J'ai utilisé des evaluate pour les requêtes, parceque MySQL a un bug dans TK 1.4, cela devrait être résolu à la prochaine version.
+evaluate self.connect.request('update entreprise set solde = '+str({*company_solde}))
+evaluate self.connect.request('insert into depenses(libelle,montant,quantite,iduser) values ( "'+{*libelle}+'", '+str({*cost})+', '+{*qtte}+', '+str({*userId})+' ); ')
+evaluate self.connect.request('insert into historique(libelle,iduser) values ( "Dépense pour '+{*libelle}+'", '+str({*userId})+' ); ')
+
+#On se déconnecte
+close database
+
+#Et on informe l'utilisateur que c'est bon!
+MessageBox Ok! Depense enregistree!
+end
+
+#Importation du fichier de constantes.
+constants: app/defines.ch
+
+[
+vars:
+	*libelle : Contient le libellé saisi.
+	*cost : Contient le cout total saisi.
+	*qtte : Contient la quantité de produits saisi.
+	*company_solde : Contient le solde de l'entreprise après opération.
+	*company : Contient toutes les données de la table entreprise dans une liste.
+	*userId : Id de l'utilisateur actuellement connecté.
+]

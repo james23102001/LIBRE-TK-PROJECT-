@@ -1,14 +1,18 @@
 #C'est une appli tk
 use tk
+
 # Les dimensions de base
 Title: GCS LIBRE PROJECT - BY GC TEAM
 Width: 600
 Size: 518
 
 main_text_color: white
+entry.size: 20
 
 #L'image de fond
 BackGround: app/res/bg.png
+
+#Au démarrage, afficher le texte de license, la checkbox et griser le bouton.
 OnDisplay: app/scripts/licence_showlicense.gcs
 
 Text.nb: 1
@@ -32,4 +36,3 @@ Edit.size: 300
 [events]
 Button-1: app/scripts/licence_accept.gcs
 [/events]
-debug: yes

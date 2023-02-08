@@ -1,0 +1,26 @@
+#form_rights_2_assoc
+#Vérifier si on n'a rien sélectionné. Si c'est le cas, erreur.
+compare SELECTED None
+if 0 then
+	MessageBox Erreur Il faut choisir un droit!
+	end
+#Récupérer le premier élément de la sélection ( l'id du droit donc )
+GetTableElement 0 of SELECTED
+SetVar *assoc_userright LASTRESULT
+
+#Puis faire une requête de mise à jour pour changer le droit de *assoc_userid
+connect MySQL with $MYSQLDATA
+evaluate self.connect.request('update utilisateur set idrole = '+str({*assoc_userright})+' where id = '+str({*assoc_userid})+' ; ')
+evaluate self.connect.request('insert into historique(libelle,iduser) values ( "Accord du droit '+str({*assoc_userright})+' à '+str({*assoc_userid})+'", '+str({*userId})+' ); ')
+close database
+
+MessageBox OK Droits changes!
+end
+
+constants: app/defines.ch
+
+[
+vars:
+	*assoc_userid : id de l'utilisateur capturé par l'écran précédent.
+	*assoc_userright : id du droit sélectionné
+]

@@ -1,0 +1,155 @@
+﻿<html xmlns="http://www.w3.org/1999/xhtml"><head xmlns="http://www.w3.org/1999/xhtml">
+		<title>Document</title>
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+		<style type="text/css">
+ p.hiddenParagraph { visibility:hidden } 
+ p { margin-top:0; margin-bottom:0; color:WindowText; font-size:10pt; font-size:10pt; } 
+ p { font-family:arial,helvetica,sans-serif;font-size:12pt; }  p.style_style1 { widows:2; orphans:2; font-size:12pt; font-family:Liberation Serif; color:WindowText; } 
+.style_style1 span { font-family:Liberation Serif; color:WindowText; } 
+ p.style_style4 { } 
+ p.style_style5 { margin-top:16px; margin-bottom:8px; font-size:14pt; font-family:Liberation Sans; } 
+.style_style5 span { font-family:Liberation Sans; } 
+ p.style_style6 { margin-top:0px; margin-bottom:9.333px; line-height:1.15; } 
+ p.style_style7 { } 
+.style_style7 span { } 
+ p.style_style8 { margin-top:8px; margin-bottom:8px; font-size:12pt; font-style:italic; } 
+.style_style8 span { font-style:italic; } 
+ p.style_style9 { } 
+.style_style9 span { } 
+ p.style_style10 { widows:0; orphans:0; } 
+ span.style_style11 { text-decoration:underline ;color:#000080; } 
+.style_style11 span { text-decoration:underline ;color:#000080; } 
+ span.X3AS7TOCHyperlink { color:#000000; text-decoration:none; } 
+ p.X3AS7TABSTYLE { } 
+ span.BulletSymbol { font-family:'Symbol'; } 
+ body { margin-left:75.6px;margin-top:75.6px;margin-bottom:75.6px;margin-right:75.6px;} 
+div.basic { width:17cm;height:25.7cm;} 
+ p.hiddenParagraph { font-size:2pt; visibility:hidden; } 
+</style>
+		<script type="text/javascript">
+							var useragent = navigator.userAgent;
+							var navigatorname;
+							if (useragent.indexOf('MSIE')!= -1)
+							{
+							navigatorname="MSIE";
+							}
+							else if (useragent.indexOf('Gecko')!= -1)
+							{
+							if (useragent.indexOf('Chrome')!= -1)
+							navigatorname="Google Chrome";
+							else
+							navigatorname="Mozilla";
+							}
+							else if (useragent.indexOf('Mozilla')!= -1)
+							{
+							navigatorname="old Netscape or Mozilla";
+							}
+							else if (useragent.indexOf('Opera')!= -1)
+							{
+							navigatorname="Opera";
+							}
+							
+							function symbol(code1,code2)
+							{
+							if (navigatorname == 'MSIE')
+								document.write(code1);
+							else
+								document.write(code2);
+							}
+							</script>
+	</head>
+	<body xmlns="http://www.w3.org/1999/xhtml"><div class="basic"><div>
+				<p class="style_style1 style_style1 style_style4 style_style4 " style="text-align:left; "><span style="font-family:Liberation Serif; font-size:12pt; ">%ENTREPRISE%</span></p>
+			</div>
+			<div>
+				<p class="style_style1 style_style1 style_style4 style_style4 " style="text-align:left; "><span style="font-family:Liberation Serif; font-size:12pt; ">%VILLE%</span></p>
+			</div>
+			<div>
+				<p class="style_style1 style_style1 style_style4 style_style4 " style="text-align:left; "><span style="font-family:Liberation Serif; font-size:12pt; ">%NO%</span></p>
+			</div>
+			<div>
+				<p class="style_style1 style_style1 style_style4 style_style4 " style="text-align:left; ">
+					<a href="mailto:gcburkina@gmail.com"><span class="style_style11 style_style11 " style="font-family:Liberation Serif; font-size:12pt; text-decoration:underline ;"></span><span class="style_style11 style_style11 " style="font-family:Liberation Serif; font-size:12pt; text-decoration:underline ;">%MAIL%</span></a>
+				</p>
+			</div>
+			<div>
+				<p class="style_style1 style_style1 style_style4 style_style4 " style="text-align:left; "> </p>
+			</div>
+			<div>
+				<p class="style_style1 style_style1 style_style4 style_style4 " style="text-align:left; "> </p>
+			</div>
+			<div>
+				<p class="style_style1 style_style1 style_style4 style_style4 " style="text-align:center; "><span style="font-weight:bold; font-family:Liberation Serif; font-size:12pt; font-weight:bold; ">Historique des mouvements enregistrés</span></p>
+			</div>
+			<div>
+				<p class="style_style1 style_style1 style_style4 style_style4 " style="text-align:center; "> </p>
+			</div>
+			<table style="border-collapse:collapse; width:17cm; align:left; margin-left:0cm; margin-bottom:0cm">
+				<tr style="margin:0;border:0;padding:0;visibility:hidden;">
+					<th style="width:108px;"/>
+					<th style="width:144px;"/>
+					<th style="width:178.667px;"/>
+					<th style="width:132px;"/>
+					<th style="width:77.333px;"/>
+				</tr>
+				<tr>
+					<td style="vertical-align:top;padding-bottom:0cm; padding-left:0cm; padding-right:0cm; padding-top:0cm; background-color:; border-left:none, 0, inherit; border-right:none, 0, inherit; border-top:none, 0, inherit; border-bottom:none, 0, inherit; ">
+						<div>
+							<p class="style_style1 style_style1 style_style4 style_style4 style_style10 style_style10 " style="text-align:left; "><span style="font-size:12pt; font-weight:normal; font-style:normal; font-family:Liberation Serif; color:#000000; font-family:Liberation Serif; font-size:12pt; font-family:Liberation Serif; font-size:12pt; font-weight:normal; font-style:normal; ">Libellé</span></p>
+						</div>
+					</td>
+					<td style="vertical-align:top;padding-bottom:0cm; padding-left:0cm; padding-right:0cm; padding-top:0cm; background-color:; border-left:none, 0, inherit; border-right:none, 0, inherit; border-top:none, 0, inherit; border-bottom:none, 0, inherit; ">
+						<div>
+							<p class="style_style1 style_style1 style_style4 style_style4 style_style10 style_style10 " style="text-align:left; "><span style="font-size:12pt; font-weight:normal; font-style:normal; font-family:Liberation Serif; color:#000000; font-family:Liberation Serif; font-size:12pt; font-family:Liberation Serif; font-size:12pt; font-weight:normal; font-style:normal; ">Date</span></p>
+						</div>
+					</td>
+					<td style="vertical-align:top;padding-bottom:0cm; padding-left:0cm; padding-right:0cm; padding-top:0cm; background-color:; border-left:none, 0, inherit; border-right:none, 0, inherit; border-top:none, 0, inherit; border-bottom:none, 0, inherit; ">
+						<div>
+							<p class="style_style1 style_style1 style_style4 style_style4 style_style10 style_style10 " style="text-align:left; "><span style="font-size:12pt; font-weight:normal; font-style:normal; font-family:Liberation Serif; color:#000000; font-family:Liberation Serif; font-size:12pt; font-family:Liberation Serif; font-size:12pt; font-weight:normal; font-style:normal; ">Auteur</span></p>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<!-- <td style="vertical-align:top;padding-bottom:0cm; padding-left:0cm; padding-right:0cm; padding-top:0cm; background-color:; border-left:none, 0, inherit; border-right:none, 0, inherit; border-top:none, 0, inherit; border-bottom:none, 0, inherit; "> -->
+						<!-- <div> -->
+							<!-- <p class="style_style1 style_style1 style_style4 style_style4 style_style10 style_style10 " style="text-align:left; "> </p> -->
+						<!-- </div> -->
+					<!-- </td> -->
+					<!-- <td style="vertical-align:top;padding-bottom:0cm; padding-left:0cm; padding-right:0cm; padding-top:0cm; background-color:; border-left:none, 0, inherit; border-right:none, 0, inherit; border-top:none, 0, inherit; border-bottom:none, 0, inherit; "> -->
+						<!-- <div> -->
+							<!-- <p class="style_style1 style_style1 style_style4 style_style4 style_style10 style_style10 " style="text-align:left; "> </p> -->
+						<!-- </div> -->
+					<!-- </td> -->
+					<!-- <td style="vertical-align:top;padding-bottom:0cm; padding-left:0cm; padding-right:0cm; padding-top:0cm; background-color:; border-left:none, 0, inherit; border-right:none, 0, inherit; border-top:none, 0, inherit; border-bottom:none, 0, inherit; "> -->
+						<!-- <div> -->
+							<!-- <p class="style_style1 style_style1 style_style4 style_style4 style_style10 style_style10 " style="text-align:left; "> </p> -->
+						<!-- </div> -->
+					<!-- </td> -->
+					<!-- <td style="vertical-align:top;padding-bottom:0cm; padding-left:0cm; padding-right:0cm; padding-top:0cm; background-color:; border-left:none, 0, inherit; border-right:none, 0, inherit; border-top:none, 0, inherit; border-bottom:none, 0, inherit; "> -->
+						<!-- <div> -->
+							<!-- <p class="style_style1 style_style1 style_style4 style_style4 style_style10 style_style10 " style="text-align:left; "> </p> -->
+						<!-- </div> -->
+					<!-- </td> -->
+					<!-- <td style="vertical-align:top;padding-bottom:0cm; padding-left:0cm; padding-right:0cm; padding-top:0cm; background-color:; border-left:none, 0, inherit; border-right:none, 0, inherit; border-top:none, 0, inherit; border-bottom:none, 0, inherit; "> -->
+						<!-- <div> -->
+							<!-- <p class="style_style1 style_style1 style_style4 style_style4 style_style10 style_style10 " style="text-align:left; "> </p> -->
+						<!-- </div> -->
+					<!-- </td> -->
+					
+					%ROWS%
+					
+				</tr>
+			</table>
+			<div>
+				<p class="style_style1 style_style1 style_style4 style_style4 " style="text-align:left; "> </p>
+			</div>
+			<div>
+				<p class="style_style1 style_style1 style_style4 style_style4 " style="text-align:left; "><span style="font-family:Liberation Serif; font-size:12pt; "><span style="mso-tab-count:1">  </span>
+						<span style="mso-tab-count:1">  </span>
+						<span style="mso-tab-count:1">  </span>
+						<span style="mso-tab-count:1">  </span>
+						<span style="mso-tab-count:1">  </span>
+						<span style="mso-tab-count:1">  </span>
+						<span style="mso-tab-count:1">  </span></span><span style="font-style:italic; color:#c9211e; font-family:Liberation Serif; font-size:12pt; font-style:italic; ">Généré par LIBRE- Gestionnaire de caisse</span></p>
+			</div></div></body>
+</html>
